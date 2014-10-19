@@ -1,3 +1,4 @@
+/*
 var api_key = "cl15l8v7ye4vxkqzypp5pyk8";
 
 var etsy_url = [
@@ -13,8 +14,8 @@ var etsy_url = [
 
 $.getJSON(etsy_url).then(function(data){
     console.log(data);
-});
-/*
+});*/
+
 _.templateSettings.interpolate = /{([\s\S]+?)}/g;
 
 function EtsyClient(options) {
