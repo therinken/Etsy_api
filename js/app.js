@@ -1,4 +1,25 @@
-_.templateSettings.interpolate = /{([\s\S]+?)}/g;
+window.onload = app;
+
+function app() {
+
+    // load some scripts (uses promises :D)
+    loader.load({
+        url: "./bower_components/jquery/dist/jquery.min.js"
+    }, {
+        url: "./bower_components/lodash/dist/lodash.min.js"
+    }, {
+        url: "./bower_components/pathjs/path.min.js"
+    }).then(function() {
+        _.templateSettings.interpolate = /{([\s\S]+?)}/g;
+
+        var options = {
+            api_key: "aavnvygu0h5r52qes74x9zvo"
+        }
+        // start app?
+        var client = new EtsyClient(options);
+    })
+
+}
 
 function EtsyClient(options) {
     if (!options.api_key) {
@@ -15,21 +36,20 @@ function EtsyClient(options) {
 EtsyClient.prototype.pullAllActiveListings = function() {
     var model = 'listings';
     var filter = 'active';
-    return $.getJSON(this.complete_api_url + model + '/' + filter + ".js?api_key=" + this.api_key + "&callback=?").then(function(data) {
+    return $.getJSON(this.complete_api_url + model + '/' + filter + ".js?api_key=" + this.api_key + "&includesImages&callback=?").then(function(data) {
         console.log(data);
     });
 };
 
 EtsyClient.prototype.getListingInfo = function(id) {
     var model = 'listings';
-    return $.getJSON(this.complete_api_url + model + '/' + id + ".js?api_key=" + this.api_key + "&callback=?").then(function(data) {
+    return $.getJSON(this.complete_api_url + model + '/' + id + ".js?api_key=" + this.api_key + "&includesImages&callback=?").then(function(data) {
         console.log(data);
     })
 }
 
 EtsyClient.prototype.getUserInfo = function() {
-    //var testusername = 'user_id'
-    return $.getJSON(this.complete_api_url + testusername + '.js?callback=' + 'getData&' + this.api_key).then(function(data) {
+    return $.getJSON(this.complete_api_url + model + '/' + id + ".js?api_key=" + this.api_key + "&includesImages&callback=?").then(function(data) {
         console.log(data);
     })
 }
@@ -41,6 +61,7 @@ EtsyClient.prototype.loadTemplateFile = function(templateName){
 }
 
 EtsyClient.prototype.putProfileDataOnPage = function(profileHtml, profile) {
+    //var grid = document.querySelector("#listings")
     document.querySelector('').innerHTML = _.template(profileHtml, profile);
 }
 
@@ -68,8 +89,6 @@ EtsyClient.prototype.init = function() {
         })
 };
 
-window.onload = app;
-
 function app(){
     var myEtsy = new EtsyClient({api_key: "aavnvygu0h5r52qes74x9zvo"});
     myEtsy.pullAllActiveListings();
@@ -87,7 +106,7 @@ var etsy_url = [
     "api_key=",
     api_key,
     "&callback=?"
-].join();
+].join('');
 
 $.getJSON(etsy_url).then(function(data){
     console.log(data);
