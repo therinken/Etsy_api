@@ -51,6 +51,9 @@ pre {
 code {
   color: #007FFF;
 }
+img {
+  width: 100%;
+}
 .layout {
   display: -webkit-box;
   display: -webkit-flex;
