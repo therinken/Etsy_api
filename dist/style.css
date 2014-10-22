@@ -1,17 +1,33 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
-
-body {
-  padding: 15px;
+img {
+  width: 100%;
+  height: 30%;
 }
-
+p {
+  font-family: sans-serif;
+  color: #666666;
+  padding: 20px;
+  text-align: justify;
+}
+h5 {
+  font-family: sans-serif;
+  color: #666666;
+  padding: 20px;
+  text-align: center;
+  font-weight: 300;
+}
+hr {
+  opacity: 0.2;
+}
+.container {
+  background: #F5F5F1;
+}
 .grid {
   display: block;
-  font-size: 0;
-  text-align: justify;
+  text-align: center;
   margin: 0 auto;
-  border-spacing: 10px;
 }
 .grid:after {
   content: "";
@@ -23,13 +39,26 @@ body {
   width: 100%;
   font-size: medium;
   vertical-align: top;
-  text-align: left;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin: 15px;
+  border-radius: 3px 3px 0 0;
+  background: white;
 }
+
+a:link {
+  text-decoration: none;
+  color: #666666;
+}
+a:visited {
+  color:#666666;
+}
+a:hover {
+  color: #60BD59;
+  cursor: auto;
+}
+
 
 @media (min-width: 800px){
   .grid-3-800 > * { width: 30%; }
-}
-
-img {
-  max-width: 100%;
 }
